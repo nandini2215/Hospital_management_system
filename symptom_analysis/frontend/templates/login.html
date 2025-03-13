@@ -1,0 +1,12 @@
+{% include "header.html" %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('scripts', filename='style.css') }}">
+</head>
+<div class="container">
+    <h2 class="title">Login</h2>
+    <form method="POST" class="form">
+        <input type="email" name="email" placeholder="Email" required class="input-field">
+        <input type="password" name="password" placeholder="Password" required class="input-field">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

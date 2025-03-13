@@ -1,0 +1,166 @@
+/* General Page Styling */
+body {
+    background-color: #eaf2ff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(90deg, #0066cc, #004b99);
+    color: white;
+    font-size: 30px;
+    padding: 25px;
+    font-weight: bold;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    animation: slideDown 1s ease-out forwards, glow 2s infinite alternate;
+}
+
+/* Main Container */
+.container {
+    background: #ffffff;
+    width: 70%;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: scaleUp 0.8s ease-in-out;
+}
+
+/* Input Box */
+.input-box {
+    margin-top: 25px;
+}
+
+input {
+    padding: 14px;
+    width: 65%;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 18px rgba(0, 102, 204, 0.6);
+    animation: bounce 0.3s ease-in-out;
+}
+
+/* Button Styling */
+button {
+    padding: 14px 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #0066cc, #004b99);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s;
+    animation: pulse 1.5s infinite alternate;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #004b99, #0066cc);
+    transform: scale(1.1);
+}
+
+/* Result Section */
+#result {
+    margin-top: 30px;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpZoom 1s ease-in-out forwards;
+}
+
+/* Text Styling */
+h2 {
+    font-size: 24px;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    margin: 8px 0;
+}
+
+strong {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideUpZoom {
+    from {
+        transform: translateY(20px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}

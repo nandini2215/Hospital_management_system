@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedInsight - Authentication</title>
+    <link rel="stylesheet" href="{{ url_for('scripts', filename='style.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="title">Welcome to MedInsight</h1>
+        <p class="subtitle">Your trusted AI-powered healthcare partner</p>
+    </header>
+    <div class="container">
+        <nav class="nav-links">
+            <a href="{{ url_for('about') }}" class="nav-item"> About Us</a>
+            <a href="{{ url_for('register') }}" class="btn btn-primary"> Register</a>
+            <a href="{{ url_for('login') }}" class="btn btn-secondary">🔑Login</a>
+        </nav>
+    </div>
+</body>
+</html>

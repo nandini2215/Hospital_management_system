@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedInsight - AI Disease Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #007bff;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #loading {
+            display: none;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #result {
+            display: none;
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        #result h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        p {
+            margin: 0.5rem 0;
+        }
+
+        strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+         MedInsight - AI Disease Predictor
+         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+    </header>
+
+    <div class="container">
+        <h1 class="title">🔬 AI-Powered Disease Diagnosis</h1>
+        <p>Enter symptoms separated by commas to get a diagnosis</p>
+
+        <div class="input-box">
+            <input type="text" id="symptoms" placeholder="e.g. fever, cough, headache">
+            <button id="predict-btn" onclick="predictDisease()">🔍 Predict</button>
+        </div>
+
+        <div id="loading">
+            <p>🔄 Generating Results...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <div id="result">
+            <h2>🩺 Diagnosis Results</h2>
+            <p><strong>Disease:</strong> <span id="disease"></span></p>
+            <p><strong>Description:</strong> <span id="description"></span></p>
+            <p><strong>Medications:</strong> <span id="medications"></span></p>
+            <p><strong>Precautions:</strong> <span id="precautions"></span></p>
+            <p><strong>Recommended Diet:</strong> <span id="diet"></span></p>
+            <p><strong>Workout Suggestions:</strong> <span id="workout"></span></p>
+        </div>
+    </div>
+
+    <script>
+        async function predictDisease() {
+            const symptoms = document.getElementById('symptoms').value;
+
+            if (!symptoms) {
+                alert('Please enter symptoms!');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ symptoms })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('disease').textContent = data.disease || 'N/A';
+                    document.getElementById('description').textContent = data.description || 'N/A';
+                    document.getElementById('medications').textContent = data.medications.join(', ') || 'N/A';
+                    document.getElementById('precautions').textContent = data.precautions.join(', ') || 'N/A';
+                    document.getElementById('diet').textContent = data.diet || 'N/A';
+                    document.getElementById('workout').textContent = data.workout || 'N/A';
+
+                    document.getElementById('result').style.display = 'block';
+                } else {
+                    alert(data.error || 'Something went wrong!');
+                }
+            } catch (error) {
+                alert('Failed to connect to the server');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

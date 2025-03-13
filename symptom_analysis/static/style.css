@@ -1,0 +1,158 @@
+/* Modernized Page Styling */
+body {
+    background-color: #eef2f7;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    font-size: 28px;
+    padding: 25px;
+    font-weight: bold;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+    animation: slideDown 1s ease-out forwards, softGlow 2s infinite alternate;
+}
+
+/* Subtle Header Glow Effect */
+@keyframes softGlow {
+    from { box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1); }
+    to { box-shadow: 0px 6px 25px rgba(0, 123, 255, 0.4); }
+}
+
+/* Main Content Box */
+.container {
+    background: #ffffff;
+    width: 50%;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    animation: scaleUp 0.7s ease-in-out;
+}
+
+/* Title Styling */
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input Field */
+.input-box {
+    margin-top: 25px;
+}
+
+input {
+    padding: 14px;
+    width: 70%;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 18px rgba(0, 123, 255, 0.4);
+    transform: scale(1.02);
+}
+
+/* Button Styling */
+button {
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s;
+    animation: softPulse 1.5s infinite alternate;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    transform: scale(1.08);
+}
+
+@keyframes softPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+/* Loading Animation */
+.hidden { display: none; }
+
+#loading {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border-left-color: #007bff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Results Section */
+#result {
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: slideUpZoom 1s ease-in-out forwards;
+}
+
+@keyframes slideUpZoom {
+    from { transform: translateY(20px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Text Styling */
+h2 { font-size: 24px; color: #007bff; font-weight: bold; }
+
+p { font-size: 16px; color: #333; margin: 5px 0; }
+
+strong { font-weight: bold; color: #007bff; }
+
+/* Global Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
